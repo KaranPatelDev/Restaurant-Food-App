@@ -24,6 +24,7 @@ app.use(morgan("dev")); // It shows HTTP request logs in the console
 //route
 app.use("/api/v1/test", require("./routes/test.routes.js"));
 app.use("/api/v1/auth", require("./routes/auth.routes.js"));
+app.use("/api/v1/user", require("./routes/user.routes.js"));
 
 app.get("/", (req, res) => {
   return res.status(200).send("<h1>Welcome to Food Server App's Backend!</h1>");
