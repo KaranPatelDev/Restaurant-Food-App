@@ -1,4 +1,4 @@
-
+const mongoose = require('mongoose');
 const userModel = require("../models/users.models");
 const bcrypt = require("bcryptjs");
 //GET USER INFO
@@ -170,13 +170,16 @@ const resetPasswordController = async (req, res) => {
 
 //Delete User Profile
 const deleteProfileController = async (req, res) => {
+    // console.log("Deleting user with ID:",req.params.id);
     try {
         await userModel.findByIdAndDelete(req.params.id);
+        // await userModel.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.id));
+        // var temp = await userModel.findByIdAndDelete(req.params.id);
+        // console.log(temp)
         return res.status(200).send({
             success: true,
             message: "User Deleted Successfully"
         });
-        
     } catch (error) {
         console.log(error);
         return res.status(500).send({
