@@ -170,24 +170,20 @@ const resetPasswordController = async (req, res) => {
 
 //Delete User Profile
 const deleteProfileController = async (req, res) => {
-    // console.log("Deleting user with ID:",req.params.id);
-    try {
-        await userModel.findByIdAndDelete(req.params.id);
-        // await userModel.findByIdAndDelete(new mongoose.Types.ObjectId(req.params.id));
-        // var temp = await userModel.findByIdAndDelete(req.params.id);
-        // console.log(temp)
-        return res.status(200).send({
-            success: true,
-            message: "User Deleted Successfully"
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).send({
-            success: false,
-            message: "Error in Delete User API",
-            error: error.message
-        });
-    }
-}
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: "Your account has been deleted",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr In Delete Profile API",
+      error,
+    });
+  }
+};
 
 module.exports = {getUserController, updateUserController, updatePasswordController, resetPasswordController, deleteProfileController};
