@@ -1,17 +1,17 @@
-const categoryModel = require("../models/categoryModel");
+const categoryModel = require("../models/category.models");
 
 // CREATE CAT
 const createCatController = async (req, res) => {
   try {
-    const { title, imageUrl } = req.body;
+  const { title, imageUrl } = req.body;
     //valdn
     if (!title) {
       return res.status(500).send({
         success: false,
-        message: "please provide category title or image",
+        message: "please provide category name or image",
       });
     }
-    const newCategory = new categoryModel({ title, imageUrl });
+    const newCategory = new categoryModel({ title: title.trim(), imageUrl });
     await newCategory.save();
     res.status(201).send({
       success: true,
@@ -57,10 +57,10 @@ const getAllCatController = async (req, res) => {
 const updateCatController = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, imageUrl } = req.body;
+    const { name, imageUrl } = req.body;
     const updatedCategory = await categoryModel.findByIdAndUpdate(
       id,
-      { title, imageUrl },
+      { name, imageUrl },
       { new: true }
     );
     if (!updatedCategory) {

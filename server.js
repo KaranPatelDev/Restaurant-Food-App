@@ -26,6 +26,7 @@ app.use("/api/v1/test", require("./routes/test.routes.js"));
 app.use("/api/v1/auth", require("./routes/auth.routes.js"));
 app.use("/api/v1/user", require("./routes/user.routes.js"));
 app.use("/api/v1/resturant", require("./routes/resturant.routes.js"));
+app.use("/api/v1/category", require("./routes/category.routes.js"));
 
 app.get("/", (req, res) => {
   return res.status(200).send("<h1>Welcome to Food Server App's Backend!</h1>");
