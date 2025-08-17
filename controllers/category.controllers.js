@@ -53,14 +53,43 @@ const getAllCatController = async (req, res) => {
   }
 };
 
-// UPDATE CATE
+// UPDATE CATEGORY
+// const updateCatController = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { name, imageUrl } = req.body;
+//     const updatedCategory = await categoryModel.findByIdAndUpdate(
+//       id,
+//       { name, imageUrl },
+//       { new: true }
+//     );
+//     if (!updatedCategory) {
+//       return res.status(500).send({
+//         success: false,
+//         message: "No Category Found",
+//       });
+//     }
+//     res.status(200).send({
+//       success: true,
+//       message: "Category Updated Successfully",
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "error in update cat api",
+//       error,
+//     });
+//   }
+// };
+// UPDATE CATEGORY
 const updateCatController = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, imageUrl } = req.body;
+    const { title, imageUrl } = req.body; // Use 'title' instead of 'name'
     const updatedCategory = await categoryModel.findByIdAndUpdate(
       id,
-      { name, imageUrl },
+      { title, imageUrl },
       { new: true }
     );
     if (!updatedCategory) {
@@ -83,7 +112,10 @@ const updateCatController = async (req, res) => {
   }
 };
 
-// DLEETE CAT
+
+
+
+// DELETE CAT
 const deleteCatController = async (req, res) => {
   try {
     const { id } = req.params;

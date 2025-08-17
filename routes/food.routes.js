@@ -10,7 +10,7 @@ const {
   deleteFoodController,
   placeOrderController,
   orderStatusController,
-} = require("../controllers/foodController");
+} = require("../controllers/food.controllers.js");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 
 const router = express.Router();
