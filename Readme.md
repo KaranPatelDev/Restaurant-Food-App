@@ -462,9 +462,9 @@ flowchart TD
     B -->|No| C[Reject with 401 Unauthorized]
     B -->|Yes| D[Extract Token]
     D --> E[Verify Token Signature using JWT_SECRET]
-    E -->|Invalid Signature/Expired| F[Reject with 401 Unauthorized]
-    E -->|Valid| G[Decode Payload (userID, role)]
-    G --> H[Attach user info to request object (e.g., req.user)]
+    E -->|Invalid Signature or Expired| F[Reject with 401 Unauthorized]
+    E -->|Valid| G[Decode Payload: userID, role]
+    G --> H[Attach user info to request object: req.user]
     H --> I[Call next() to proceed to Controller]
 
     style C fill:#ffcdd2
