@@ -112,6 +112,8 @@ const getSingleFoodController = async (req, res) => {
 const getFoodByResturantController = async (req, res) => {
   try {
     const resturantId = req.params.id;
+    // console.log(req.params);
+    
     if (!resturantId) {
       return res.status(404).send({
         success: false,
