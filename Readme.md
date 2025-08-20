@@ -457,19 +457,22 @@ sequenceDiagram
 For every request to a protected route, our authentication middleware automatically validates the JWT.
 
 ```mermaid
+
 flowchart TD
-    A[Incoming Request to Protected Route] --> B{Has 'Authorization: Bearer <token>' Header?};
-    B -->|No| C[Reject with 401 Unauthorized];
-    B -->|Yes| D[Extract Token];
-    D --> E[Verify Token Signature using JWT_SECRET];
-    E -->|Invalid Signature/Expired| F[Reject with 401 Unauthorized];
-    E -->|Valid| G[Decode Payload (userID, role)];
-    G --> H[Attach user info to request object (e.g., req.user)];
-    H --> I[Call next() to proceed to Controller];
-    
-    style C fill:#ffcdd2;
-    style F fill:#ffcdd2;
-    style I fill:#c8e6c9;
+    A[Incoming Request to Protected Route] --> B{Has Authorization Header}
+    B -->|No| C[Reject with 401 Unauthorized]
+    B -->|Yes| D[Extract Token]
+    D --> E[Verify Token Signature using JWT_SECRET]
+    E -->|Invalid or Expired| F[Reject with 401 Unauthorized]
+    E -->|Valid| G[Decode Payload - userID and role]
+    G --> H[Attach user info to req.user]
+    H --> I[Proceed to Controller via next()]
+
+    style C fill:#ffcdd2
+    style F fill:#ffcdd2
+    style I fill:#c8e6c9
+
+
 ```
 
 ---
